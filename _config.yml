@@ -85,3 +85,6 @@ menu:
   #categories: /categories
   tags: /tags
   #commonweal: /404.html
+  
+tag_generator:
+  per_page: 10  
