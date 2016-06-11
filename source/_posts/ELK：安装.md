@@ -1,5 +1,6 @@
 ﻿---
 title: ELK：安装
+title_url: ELK-introduce-setup
 date: 2016-06-10
 tags: ELK
 categories: 技术

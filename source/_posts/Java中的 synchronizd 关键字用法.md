@@ -1,5 +1,6 @@
 ﻿---
 title: Java 中的 synchronizd 关键字在同步中的使用
+title_url: Java-synchronizd-usage
 date: 2016-06-07
 tags: Java
 categories: 技术
