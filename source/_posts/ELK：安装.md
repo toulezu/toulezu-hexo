@@ -6,7 +6,7 @@ categories: 技术
 description: ELK 初步认识和安装
 ---
 
-#ELK：安装
+## ELK 简单介绍
 
 ELK 是 Elasticsearch,Logstash,Kibana的合称，依赖Java才能运行。
 
