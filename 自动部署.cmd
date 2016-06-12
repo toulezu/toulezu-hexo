@@ -1,15 +1,21 @@
 @echo off
 set hexo_path=D:\git-toulezu\toulezu-hexo
-set hexo_public=D:\git-toulezu\toulezu-hexo\public
+set hexo_public=%hexo_path%\public
+set theme_path=%hexo_path%\themes
+set theme_next=%theme_path%\next
 set public_path=D:\git-toulezu\toulezu-public
 
-@echo [INFO] ------------------------------------------------------------------------æ‰§è¡Œ hexo g å‘½ä»¤
+@echo [INFO] ------------------------------------------------------------------------Ö´ĞĞ hexo g ÃüÁî
 D:
 cd %hexo_path%
 call hexo clean
 call hexo g
 
-@echo [INFO] ------------------------------------------------------------------------å°† %hexo_public% ä¸‹çš„æ–‡ä»¶å¤åˆ¶åˆ° %public_path%
+@echo [INFO] ------------------------------------------------------------------------½« %hexo_public% ÏÂµÄÎÄ¼ş¸´ÖÆµ½ %public_path%
 xcopy %hexo_public%\*.* %public_path% /e /y
+
+@echo [INFO] ------------------------------------------------------------------------½« %theme_next% ÏÂµÄÅäÖÃÎÄ¼ş¸´ÖÆµ½ %theme_path%
+xcopy %theme_next%\_config.yml %theme_path% /y
+ren %theme_path%\_config.yml _config.yml.next.bak
 
 pause
