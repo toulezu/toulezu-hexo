@@ -1,6 +1,6 @@
 ﻿---
 title: 写在github上的第一篇博客
-title_url: blog-github-usage
+title_url: blog-github-some-thinking
 date: 2016-06-01
 tags: 感想
 categories: 生活
