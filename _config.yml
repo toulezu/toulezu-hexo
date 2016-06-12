@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 偷乐族
+title: ckjava
 subtitle: 
 description: 从生活和工作中偷取快乐
 author: ck
@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://toulezu.com
+url: http://ckjava.com
 root: /
 permalink: :year/:month/:day/:title_url/
 permalink_defaults:
