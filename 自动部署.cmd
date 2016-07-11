@@ -18,4 +18,7 @@ xcopy %hexo_public%\*.* %public_path% /e /y
 xcopy %theme_next%\_config.yml %theme_path% /y
 ren %theme_path%\_config.yml _config.yml.next.bak
 
+@echo [INFO] ------------------------------------------------------------------------启动本地hexo服务
+call hexo s
+
 pause
