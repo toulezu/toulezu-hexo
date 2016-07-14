@@ -2,7 +2,7 @@
 title: 使用Maven的profiles和testResource进行Junit单元测试
 title_url: Maven-profiles-testResource-Junit
 date: 2016-07-11
-tags: Maven,Junit
+tags: [Maven,Junit]
 categories: 技术
 description: 使用Maven的profiles和testResource进行Junit单元测试
 ---
@@ -12,7 +12,7 @@ description: 使用Maven的profiles和testResource进行Junit单元测试
 Maven的profiles可根据不同的环境将POM的配置应用到配置文件中的`${}`变量中，具体步骤如下：
 
 - POM的profiles配置如下
-```
+```xml
 <project>
 	
 	<profiles>
@@ -43,7 +43,7 @@ Maven的profiles可根据不同的环境将POM的配置应用到配置文件中�
 
 - 为了在编译的时候就将POM的配置应用到文件中的`${}`变量中需要加入如下配置，具体会将profiles中的配置应用到`src/main/resources`目录下含有`${}`变量，
 这些变量可以在xml或者properties文件中
-```
+```xml
 <project>
 
 	<build>
@@ -88,7 +88,7 @@ log4j.appender.Console.layout.ConversionPattern=%d{dd\u65e5 HH:mm:ss,SSS} : %-5p
 - POM的profiles配置和上面的一样
 
 - 在`build`节点下新增`testResources`，确保在本地执行`mvn test -Ptest` 的时候将profiles配置应用到`src/test/resources`目录下含有`${}`变量并执行Junit单元测试
-```
+```xml
 <project>
 
 	<build>
@@ -111,7 +111,7 @@ log4j.appender.Console.layout.ConversionPattern=%d{dd\u65e5 HH:mm:ss,SSS} : %-5p
 ## 编写一个Spring MVC的Controller层Junit单元测试
 
 - Controller层Junit单元测试与Service层有所不同，需要引入spring-test和spring-mock
-```
+```xml
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-test</artifactId>
@@ -125,7 +125,7 @@ log4j.appender.Console.layout.ConversionPattern=%d{dd\u65e5 HH:mm:ss,SSS} : %-5p
 ```
 
 - Controller层代码如下
-```
+```java
 @ResponseBody
 @ApiOperation(value = "获取用户信息", notes = "获取用户信息", response = JsonResponses.class)
 @RequestMapping(value = "/user_info", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
@@ -148,7 +148,7 @@ public void getUserInfo(@ModelAttribute BasicInfoBean basicInfo,
 ```
 
 - Junit代码如下
-```
+```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(locations = { "classpath:spring/*-config.xml", "classpath:spring/*-servlet.xml" })
@@ -216,5 +216,6 @@ public class TestUserController extends BaseController {
 }
 ```
 
+参考如下:
 [Maven的profiles介绍](https://maven.apache.org/guides/introduction/introduction-to-profiles.html)
 [MAVEN 属性定义与使用](http://www.tmser.com/post-178.html)

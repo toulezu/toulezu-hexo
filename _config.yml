@@ -81,10 +81,7 @@ archive_generator:
 menu:
   home: /
   archives: /archives
-  #about: /about
-  #categories: /categories
+  about: /about
+  categories: /categories
   tags: /tags
-  #commonweal: /404.html
-  
-tag_generator:
-  per_page: 10  
+  commonweal: /404.html
