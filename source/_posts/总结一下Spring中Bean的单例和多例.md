@@ -108,9 +108,13 @@ public class TestController {
 `[{"key":"2","value":"2","next":null}]`
 可见对于两次请求cacheData都是不是一个对象，TestController当然也不是同一个。
 
-参考：
-[Struts action的单例与多例](http://my.oschina.net/davidzhang/blog/67429)
-[在spring来管理实例对象prototype和singleton的选择.针对action如何使用](http://www.cnblogs.com/shipengzhi/articles/2099694.html)
-[Spring MVC Controller单例陷阱](http://lavasoft.blog.51cto.com/62575/1394669)
-[struts+spring action应配置为scope="prototype"](http://www.cnblogs.com/JemBai/archive/2010/11/10/1873954.html)
-[struts2 Action获取表单数据](http://blog.csdn.net/lsh6688/article/details/7863322)
+## 例子的详细代码
+
+- [点这里](https://github.com/toulezu/play/tree/master/plainWebApi)
+
+## 参考：
+- [Struts action的单例与多例](http://my.oschina.net/davidzhang/blog/67429)
+- [在spring来管理实例对象prototype和singleton的选择.针对action如何使用](http://www.cnblogs.com/shipengzhi/articles/2099694.html)
+- [Spring MVC Controller单例陷阱](http://lavasoft.blog.51cto.com/62575/1394669)
+- [struts+spring action应配置为scope="prototype"](http://www.cnblogs.com/JemBai/archive/2010/11/10/1873954.html)
+- [struts2 Action获取表单数据](http://blog.csdn.net/lsh6688/article/details/7863322)

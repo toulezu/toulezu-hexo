@@ -2,7 +2,7 @@
 title: Log4j向Logstash发送日志实践
 title_url: log4j-logstash-practice
 date: 2016-07-05
-tags: log4j,logstash
+tags: [Log4j,Logstash]
 categories: 技术
 description: Log4j向Logstash发送日志实践
 ---
@@ -44,7 +44,7 @@ output {
 ## 在应用中配置 log4j
 
 - log4j用SocketAppender将日志发送到指定的主机和端口，在log4j.xml中配置如下
-```
+```xml
 <appender name="LOGSTASH" class="org.apache.log4j.net.SocketAppender">
 	<param name="RemoteHost" value="192.168.37.118"/>
 	<param name="Port" value="4560"/>	

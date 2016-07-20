@@ -216,6 +216,42 @@ public class TestUserController extends BaseController {
 }
 ```
 
-参考如下:
-[Maven的profiles介绍](https://maven.apache.org/guides/introduction/introduction-to-profiles.html)
-[MAVEN 属性定义与使用](http://www.tmser.com/post-178.html)
+## 如何去掉单元测试
+
+- 在执行Maven命令的时候加上`-Dmaven.test.skip=true`即可，比如`clean install -Dmaven.test.skip=true`，这样就会在执行的过程中跳过单元测试 `[INFO] Tests are skipped.`，也可以在profiles的properties中增加`<maven.test.skip>true</maven.test.skip>`，具体如下
+```xml
+<project>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<maven.test.skip>false</maven.test.skip>
+				<!-- 日志 -->
+				<log.root.level>DEBUG</log.root.level>
+				<log.root.name>Service</log.root.name>
+				<log.special>Console</log.special>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+				<!-- 日志 -->
+				<log.root.level>DEBUG</log.root.level>
+				<log.root.name>Service</log.root.name>
+				<log.special>Console</log.special>
+			</properties>
+		</profile>
+	</profiles>
+</project>
+```
+
+## 参考如下
+- [Maven的profiles介绍](https://maven.apache.org/guides/introduction/introduction-to-profiles.html)
+- [MAVEN 属性定义与使用](http://www.tmser.com/post-178.html)
+- [Maven的生命周期和插件](http://www.open-open.com/lib/view/open1452138592011.html)
+- [利用maven中resources插件的copy-resources目标进行资源copy和过滤](http://xigua366.iteye.com/blog/2080668?utm_source=tuicool&utm_medium=referral)

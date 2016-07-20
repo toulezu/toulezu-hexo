@@ -18,10 +18,8 @@ xcopy %hexo_public%\*.* %public_path% /e /y
 if exist %theme_path%\_config.yml del /f/q %theme_path%\_config.yml
 if exist %theme_path%\_config.yml.next.bak del /f/q %theme_path%\_config.yml.next.bak
 
-
 xcopy %theme_next%\_config.yml %theme_path% /y
 ren %theme_path%\_config.yml _config.yml.next.bak    
-
 
 @echo [INFO] ------------------------------------------------------------------------启动本地hexo服务
 call hexo s

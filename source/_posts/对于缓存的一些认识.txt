@@ -1,0 +1,8 @@
+---
+title: 对于缓存的一些认识
+title_url: cache-knowledge
+date: 2016-07-14
+tags: 缓存
+categories: 技术
+description: 对于缓存的一些认识
+---
