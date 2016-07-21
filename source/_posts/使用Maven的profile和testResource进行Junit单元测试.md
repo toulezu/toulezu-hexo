@@ -108,6 +108,9 @@ log4j.appender.Console.layout.ConversionPattern=%d{dd\u65e5 HH:mm:ss,SSS} : %-5p
 
 - 在`src/test/resources`目录下新建`test`文件夹，将properties文件移到该目录下，Maven在执行单元测试的时候默认从该目录读取properties文件
 
+- **注意**，在 Eclipse 中右键项目执行`Maven->Update Maven Project`后，需要右键项目在`Java Build Path`节点中选择`Source`选项卡，
+选中`src/main/resources`和`src/test/resources`下的`Excluded`选项点击右边的`Remove`按钮，最后点击下面的`Ok`按钮，才能将相关资源文件编译到`target`目录下
+
 ## 编写一个Spring MVC的Controller层Junit单元测试
 
 - Controller层Junit单元测试与Service层有所不同，需要引入spring-test和spring-mock

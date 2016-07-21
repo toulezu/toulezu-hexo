@@ -1,0 +1,8 @@
+---
+title: mybatis-generator 学习笔记
+title_url: mybatis-generator-learning-notes
+date: 2016-07-14
+tags: mybatis-generator
+categories: 技术
+description: mybatis-generator 学习笔记
+---
