@@ -1,5 +1,5 @@
 @echo off
-set base_path=D:\git-workspace\toulezu
+set base_path=D:\workspace\git-toulezu
 set public_path=%base_path%\public
 set hexo_public=%base_path%\hexo\public
 set theme_path=%base_path%\hexo\themes
