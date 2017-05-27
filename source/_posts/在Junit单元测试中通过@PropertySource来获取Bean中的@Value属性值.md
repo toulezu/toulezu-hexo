@@ -74,4 +74,5 @@ public class TestDBService extends BaseTest {
 - [Populating Spring @Value during Unit Test](http://stackoverflow.com/questions/17353327/populating-spring-value-during-unit-test?noredirect=1&lq=1)
 - [Spring @PropertySource & @Value annotations example](http://websystique.com/spring/spring-propertysource-value-annotations-example/)
 - [使用RunWith注解改变JUnit的默认执行类，并实现自已的Listener](http://blog.csdn.net/fenglibing/article/details/8584602)
+- [Spring基于注解TestContext 测试框架使用详解](http://blog.csdn.net/yaerfeng/article/details/25368447)
 
