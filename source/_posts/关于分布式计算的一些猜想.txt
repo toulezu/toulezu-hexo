@@ -1,0 +1,121 @@
+---
+title: 关于分布式计算的一些猜想
+title_url: distributed-computation
+date: 2016-08-30
+tags: [分布式计算]
+categories: 分布式计算
+description: 关于分布式计算的一些猜想
+---
+
+## 分布式计算启蒙
+
+以前看到一个新闻,大概说是一个父亲和他的小儿子在一起用了很多的树莓派组合成一个超级电脑.当时我在想这台超级电脑如何将一个任务分解到多个树莓派中并行执行的.
+现在工作中经常遇到使用多个线程并行来提高程序的执行速度,比如(使用in 分页,每个线程查询一页记录,并行执行完毕后存入应用程序的Map中),(每个线程执行一个API请求,多个线程并行执行来缩短程序执行时间)
+
+从上面的例子可以看到**多线程并行执行**这个问题,涉及到计算任务的分解以及线程的问题上, 在 Java 中通过如下代码
+```
+ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+```
+可以很方便的在应用中创建一个线程池,最多同时执行的线程数由`Runtime.getRuntime().availableProcessors()`决定,也就是当前计算机的CPU核心数,理想情况下让CPU的每个核心执行一个线程.但是单机 CPU 数量有限,这个时候如果能将计算任务分解到各个线程中执行,各个线程又分布到不同的计算机中,这样所有的CPU都可以在同一时间并行处理任务,从而极大的提供处理速度.
+
+## 验证一台PC机器上的CPU是否每个核心处理一个线程任务
+
+```
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class TestThreadWork {
+	
+	/**
+	 * 在一台双核四线程的机器上设置并行执行线程数为3,程序执行后可以在 Windows 任务管理器中发现 javaw.exe 进程最高占用了 75% 的CPU, 也就是说CPU中有3个线程在执行任务
+	 */
+	private static final int THREAD_NUMBER = 3;
+	
+	public static void main(String[] args) {
+		ExecutorService executorService = Executors.newFixedThreadPool(THREAD_NUMBER);
+		
+		// 这里虽然添加了4个任务,但是最多3个任务并行执行,还有一个处于等待状态
+		List<CalculateWorker> workerList = new ArrayList<>();
+		workerList.add(new CalculateWorker());
+		workerList.add(new CalculateWorker());
+		workerList.add(new CalculateWorker());
+		workerList.add(new CalculateWorker());
+	
+		try {
+			List<Future<String>> result = executorService.invokeAll(workerList);
+			for (Future<String> future : result) {
+				future.get();
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static class CalculateWorker implements Callable<String> {
+
+		@Override
+		public String call() throws Exception {
+			BigDecimal a = new BigDecimal("200000000.5");
+			BigDecimal b = new BigDecimal("10000000000.25");
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			for (int i = 0; i < 1000000000; i++) {
+				a.multiply(b);
+			}
+			System.out.println("done");
+			return null;
+		}
+		
+	}
+}
+```
+
+## 计算任务的分解
+
+对于任务的分解就是想办法把完整的任务分解成若干个子任务,子任务之间没有依赖关系,然后让每个线程执行一个子任务,在分布式计算中这里的线程可以在网络中的任何一个CPU中.
+
+这里可以设置一个 Master 计算节点用于 任务 的分解,其他子节点向 Master 节点注册,处理任务,汇报计算结果, 这里的 Master 节点可以通过某个选举策略自动产生(每隔10分钟当前的 Master 节点向所有的子节点发起选举请求,各个子节点汇报自己的 可用内存, 内存最大的当选为 Master).
+
+## 任务分解后通过网络分发到各个节点上执行并返回结果
+
+任务在 Master 节点被分解后通过网络分发到各个子节点上去执行,这个过程要考虑到任务分发的问题,具体如下:
+
+- 将 任务的对象 序列化后通过网络传输到子节点的 JVM 中去执行
+- 执行完毕后再将结果回传到 Master 节点, 这里要考虑到 任务和子节点 的绑定问题,以及出现的网络异常,超时等各种问题.
+- 关于任务的分解与子节点的协调问题, 有的任务计算量很大需要用到尽可能多的子节点, 也有的任务很简单, 这时要考虑对任务进行评估以确定合理的子节点数
+
+## 计算节点的管理
+
+
+
+
+
+
+
