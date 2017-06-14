@@ -48,7 +48,8 @@ public class Boss {
 ## 关于 context:annotation-config
 
 使用以上注解都必须在 Spring 的核心配置文件中加入如下配置
-```
+
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>  
 <beans xmlns="http://www.springframework.org/schema/beans"  
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
@@ -79,7 +80,7 @@ public class Boss {
 这个配置更强大,不但启用了对类包进行扫描以实现注解驱动的**Bean定义**的功能，同时还启用了注解驱动的**依赖注入**的功能（即还隐式地在内部注册了 AutowiredAnnotationBeanPostProcessor 和 CommonAnnotationBeanPostProcessor），因此当使用 `<context:component-scan/>` 后，就可以将 `<context:annotation-config/>` 移除了。 
 最终的配置可以简化成如下的样子
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>  
 <beans xmlns="http://www.springframework.org/schema/beans"  
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
