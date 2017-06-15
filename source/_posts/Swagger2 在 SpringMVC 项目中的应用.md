@@ -20,7 +20,27 @@ description: Swagger2 在 SpringMVC 项目中的应用
 	<artifactId>springfox-swagger-ui</artifactId>
 	<version>2.5.0</version>
 </dependency>
+
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-annotations</artifactId>
+	<version>2.7.4</version>
+</dependency>
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-databind</artifactId>
+	<version>2.7.4</version>
+</dependency>
+<dependency>
+	<groupId>com.fasterxml.jackson.core</groupId>
+	<artifactId>jackson-core</artifactId>
+	<version>2.7.4</version>
+</dependency>
 ```
+
+其中 `springfox-swagger2` 用于在访问 `http://myapp/v2/api-docs` 时生成API的 json 数据, `springfox-swagger-ui`则用于将 json 数据以 HTML 的形式将API展示出来,便于在线调试. 
+
+`v2/api-docs` 这个路径定义在 `springfox-swagger2` 项目中的 [Swagger2Controller](https://github.com/springfox/springfox/blob/master/springfox-swagger2/src/main/java/springfox/documentation/swagger2/web/Swagger2Controller.java) 类中, 每次访问 `http://myapp/v2/api-docs` 都将生成一个 Swagger 对象,并使用 jackson 的 ObjectMapper 对象将 Swagger 对象转成 json 返回给浏览器,因此这里也要添加 jackson 的相关依赖.
 
 springfox 的相关仓库地址如下
 
@@ -146,6 +166,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	</exclusions>
 </dependency>
 ```
+
+## 使用的Demo
+
+- [plainWebApi](https://github.com/toulezu/play/tree/master/plainWebApi)
 
 ## 参考
 
