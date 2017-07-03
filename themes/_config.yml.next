@@ -238,7 +238,7 @@ mathjax:
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: da35ffacbd044ee33c19952855ed80e9
 
 # Duoshuo ShortName
 duoshuo_shortname: ckJava
