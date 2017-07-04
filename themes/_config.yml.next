@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "ckJava, java, 技术, 编程"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -184,8 +184,8 @@ toc:
 
 sidebar:
   # Sidebar Position, available value: left | right
-  position: left
-  #position: right
+  #position: left
+  position: right
 
   # Sidebar Display, available value:
   #  - post    expand on posts automatically. Default.
@@ -305,7 +305,7 @@ han: false
 baidu_analytics: da35ffacbd044ee33c19952855ed80e9
 
 # Duoshuo ShortName
-duoshuo_shortname: ckJava
+# duoshuo_shortname: ckJava
 
 # Disqus
 disqus:
@@ -367,10 +367,10 @@ changyan:
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
-duoshuo_info:
-  ua_enable: true
-  admin_enable: true
-  user_id: 6258755641809044226
+#duoshuo_info:
+#  ua_enable: true
+#  admin_enable: true
+#  user_id: 6258755641809044226
   #admin_nickname: Author
 
 
@@ -412,9 +412,9 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: qlNVttmPMKkEP5UaKHYPllFN-gzGzoHsz
+  app_key: tpBGsHqHFJRLI3KTv8Azk9ui
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
