@@ -3,7 +3,7 @@ title: Phabricator 在 Windows 环境上的部署与二次开发
 title_url: Phabricator-Windows-setup
 date: 2017-07-03
 tags: Phabricator
-categories: [技术,PHP]
+categories: [Phabricator,PHP]
 description: Phabricator 在 Windows 环境上的部署与二次开发
 ---
 
@@ -16,6 +16,8 @@ description: Phabricator 在 Windows 环境上的部署与二次开发
 其中 wampserver 安装在 `C:\wamp64`
 
 eclipse-php 需要在 `Window -> Preferences -> PHP` 设置安装好的 PHP,Debug,Execution Environments 等信息,具体参考->[这里](http://tiame.iteye.com/blog/1454234)
+
+- 这里最终推荐使用 PhpStorm 来二次开发 Phabricator，因为本人在使用 eclipse-php 和 xdebug 来 debug Phabricator 的时候 eclipse-php 很容易崩溃，而 PhpStorm 就没有任何问题，总之，花钱的东西就是好用。
 
 ## Phabricator 部署
 
@@ -63,10 +65,10 @@ git clone https://github.com/phacility/phabricator.git
 那么通过 Git Bash cd 到 `D:\php-workspace\phabricator\phabricator` 目录, 执行如下命令来设置 mysql 的相关信息
 
 ```
-php setup/manage_config.php set mysql.host localhost
-php setup/manage_config.php set mysql.port 3306
-php setup/manage_config.php set mysql.user root
-php setup/manage_config.php set mysql.pass 123
+php scripts/setup/manage_config.php set mysql.host localhost
+php scripts/setup/manage_config.php set mysql.port 3306
+php scripts/setup/manage_config.php set mysql.user root
+php scripts/setup/manage_config.php set mysql.pass 123
 ```
 
 通过如下命令进行 upgrade
@@ -88,3 +90,5 @@ php scripts/sql/manage_storage.php upgrade
 - [Eclipse集成PDT+XDebug调试PHP脚本](http://pjdong1990.iteye.com/blog/1610305)
 - [Phabricator 技术文档](https://secure.phabricator.com/diviner/)
 - [Phabricator 二次开发入门](https://secure.phabricator.com/book/phabcontrib/)
+- [Phabricator 基本代码结构](https://secure.phabricator.com/book/phabcontrib/article/phabricator_code_layout/)
+- [xdebug 配置向导](https://xdebug.org/wizard.php)

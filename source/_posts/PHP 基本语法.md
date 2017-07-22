@@ -7,7 +7,6 @@ categories: PHP
 description: PHP 基本语法
 ---
 
-
 ## => 含义
 
 => 是用来数组赋值时用的，例子：
@@ -41,6 +40,10 @@ $bar = new foo();
 $bar->do_foo();
 ?>
 ```
+
+## .= 的意思
+
+表示字符串累加,类似于 +=，-=
 
 ## 类型转换
 
@@ -96,6 +99,184 @@ echo MyClass::CONST_VALUE;
 ?>
 ```
 
+## 构造函数和析构函数
+
+```php
+<?php
+class MyDestructableClass {
+   function __construct() { // 构造函数
+       print "In constructor\n";
+       $this->name = "MyDestructableClass";
+   }
+
+   function __destruct() { // 析构函数
+       print "Destroying " . $this->name . "\n";
+   }
+}
+
+$obj = new MyDestructableClass();
+?>
+```
+
+## 命名空间 和 use
+
+```php
+namespace Album\Model;
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface;
+class Album implements InputFilterAwareInterface {
+
+}
+```
+
+## include 和 include_once
+
+使用方法：include "文件路径";
+
+函数作用：引入另一个php脚本文件，并执行里面的代码
+
+推荐使用：include_once "文件路径";
+
+```php
+// 自动加载控制器和模型类 
+public static function loadClass($class) {
+    $frameworks = __DIR__ . '/' . $class . '.php';
+    $controllers = APP_PATH . 'application/controllers/' . $class . '.php';
+    $models = APP_PATH . 'application/models/' . $class . '.php';
+
+    if (file_exists($frameworks)) {
+        // 加载框架核心类
+        include $frameworks;
+    } elseif (file_exists($controllers)) {
+        // 加载应用控制器类
+        include $controllers;
+    } elseif (file_exists($models)) {
+        //加载应用模型类
+        include $models;
+    } else {
+        // 错误代码
+    }
+}
+```
+
+## require 和 require_once
+
+>最大的区别就是：include在引入不存文件时产生一个警告且脚本还会继续执行，require则会导致一个致命性错误且脚本停止执行。
+
+```php
+<?php  
+include_once '1.php';  
+require_once '1.php';  
+include '1.php';  
+require '1.php';  
+?>  
+```
+
+## 以下划线(_)开头的变量和方法
+
+加一个为私有的, 加两个一般都是系统默认的，系统预定义的.
+
+```php
+__LINE__ 表示文件中的当前行号。
+
+__FILE__ 表示文件的完整路径和文件名。
+
+__DIR__ 表示文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录。它等价于 dirname(__FILE__)。除非是根目录，否则目录中名不包括末尾的斜杠
+```
+
+另外 php规定以两个下划线（__）开头的方法都保留为**魔术方法**，
+
+PHP中的魔术方法有
+
+```php
+__construct,
+__destruct ,
+__call,
+__callStatic,
+__get, 
+__set,
+__isset, 
+__unset , 
+__sleep,
+__wakeup, 
+__toString,
+__set_state, 
+__clone, 
+__autoload
+```
+
+## array_merge和数组相加（+）
+
+- 键名是字符串：
+
+```php
+$arr1=array('a'=>'PHP');
+$arr2=array('a'=>'JAVA');
+//如果键名为字符，且键名相同，array_merge()后面数组元素值会覆盖前面数组元素值
+print_r(array_merge($arr1,$arr2));//Array ( [a] => JAVA )
+//如果键名为字符，且键名相同，数组相加会将最先出现的值作为结果
+print_r($arr1+$arr2);//Array ( [a] => PHP )
+```
+
+- 键名是数字：
+
+```php
+$arr1=array("C","PHP");
+$arr2=array("JAVA","PHP");
+//如果键名为数字，array_merge()不会进行覆盖
+print_r(array_merge($arr1,$arr2));//Array ( [0] => C [1] => PHP [2] => JAVA [3] => PHP )
+//如果键名为数字，数组相加会将最先出现的值作为结果，后面键名相同的会被抛弃
+print_r($arr1+$arr2);//Array ( [0] => C [1] => PHP )
+```
+
+## clone 关键字与 __clone() 方法
+
+- `clone` 关键字用于克隆一个完全一样的对象,而且克隆以后，两个对象互不干扰。
+
+- `__clone()` 如果想在克隆后改变克隆对象的内容，需要在类中添加一个特殊的 `__clone()` 方法来重写原本的属性和方法。`__clone()` 方法只会在对象被克隆的时候自动调用。
+
+```php
+<?php
+class Person {
+    private $name;
+    private $age;
+
+    function __construct($name, $age) {
+        $this->name = $name;
+        $this->age = $age;
+    }
+
+    function say() {
+        echo "我的名字叫：".$this->name;
+	    echo "我的年龄是：".$this->age."<br />";
+    }
+    function __clone() {
+        $this->name = "我是假的".$this->name;
+        $this->age = 30;
+    }
+}
+
+$p1 = new Person("张三", 20);
+$p1->say();
+$p2 = clone $p1;
+$p2->say();
+?>
+```
+
+运行例子，输出：
+
+```
+我的名字叫：张三 我的年龄是：20
+我的名字叫：我是假的张三 我的年龄是：30
+```
+
 ## 参考
 
 - [php中双冒号的应用](http://blog.csdn.net/abandonship/article/details/6459370)
+- [构造函数和析构函数](http://php.net/manual/zh/language.oop5.decon.php#language.oop5.decon)
+- [PHP中用下划线开头的变量含义](http://blog.csdn.net/zlking02/article/details/6752256)
+- [PHP 1、array_merge和数组相加（+）](http://www.jianshu.com/p/43e9263f82c1)
+- [PHP 对象克隆 clone 关键字与 __clone() 方法](http://www.5idev.com/p-php_object_clone.shtml)
+- [PHP基础教程](http://www.5idev.com/php-phpbase.shtml)
