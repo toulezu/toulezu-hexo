@@ -193,6 +193,10 @@ $id = $request->getURIData('id');
 $object = $this->newObjectFromID($id, $capabilities);
 ```
 
+## 最终的效果
+
+![workboard-date](http://7xt8a6.com1.z0.glb.clouddn.com/workboard-1.PNG)
+
 ## 总结
 
 通过做这个需求，了解了 Phabricator 如下的技术细节
