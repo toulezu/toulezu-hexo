@@ -1,0 +1,73 @@
+./configure --prefix=/data/nginx --with-http_realip_module --with-http_sub_module --with-http_flv_module --with-http_dav_module --with-http_gzip_static_module --with-http_stub_status_module --with-http_addition_module --with-pcre=/usr/local/soft/nginx/pcre-8.40 --with-openssl=/usr/local/soft/nginx/openssl-1.1.0f --with-http_ssl_module --with-zlib=/usr/local/soft/nginx/zlib-1.2.11
+
+
+./configure: error: C compiler cc is not found
+
+```
+configure: error: xml2-config not found. Please check your libxml2 installation.
+```
+[手动编译安装PHP遇到错误以及解决方法记录](http://blog.csdn.net/risingsun001/article/details/43705273)
+
+```
+configure: error: Cannot find OpenSSL's <evp.h>
+```
+
+将 --with-openssl 改成 --with-openssl-dir==/usr/local/soft/nginx/openssl-1.1.0f , 原因是这里的 openssl 手工安装的
+
+```
+configure: error: Please reinstall the BZip2 distribution
+```
+
+安装 `yum install bzip2-devel` 
+=/usr/local/soft/nginx/openssl-1.1.0f     
+
+
+
+
+[PHP编译过程中常见错误信息的解决方法](http://lyp.cn/350_how-to-fix-php-compile-errors)
+[如何源码编译安装PHP7](https://www.linuxdashen.com/如何源码编译安装php7)
+[PHP源码包编译安装错误及解决方法汇总](http://raffaelexr.blog.51cto.com/8555551/1711783)
+
+sudo yum install freetype-devel libevent libevent-devel mysql-devel libxml2 libxml2-devel ncurses ncurses-devel libmcrypt-devel net-snmp net-snmp-devel recode-devel
+
+./configure     --prefix=/data/php7     --with-config-file-path=/data/php7/etc    --enable-mbstring     --enable-zip     --enable-bcmath     --enable-pcntl     --enable-ftp     --enable-exif     --enable-calendar     --enable-sysvmsg     --enable-sysvsem     --enable-sysvshm     --enable-opcache     --enable-fpm      --enable-session     --enable-sockets     --enable-mbregex     --with-fpm-user=vagrant      --with-fpm-group=nogroup     --enable-wddx     --with-curl     --with-mcrypt     --with-iconv     --with-gd     --with-jpeg-dir=/usr     --with-png-dir=/usr     --with-zlib-dir=/usr     --with-freetype-dir=/usr     --enable-gd-native-ttf     --enable-gd-jis-conv     --with-openssl-dir     --with-pdo-mysql=mysqlnd     --with-gettext=/usr     --with-zlib=/usr     --with-bz2=/usr     --with-recode=/usr     --with-xmlrpc     --with-mysqli=mysqlnd
+
+./configure \
+    --prefix=/data/php7 \
+    --with-config-file-path=/data/php7/etc \
+    --enable-mbstring \
+    --enable-zip \
+    --enable-bcmath \
+    --enable-pcntl \
+    --enable-ftp \
+    --enable-exif \
+    --enable-calendar \
+    --enable-sysvmsg \
+    --enable-sysvsem \
+    --enable-sysvshm \
+    --enable-opcache \
+    --enable-fpm  \
+    --enable-session \
+    --enable-sockets \
+    --enable-mbregex \
+    --with-fpm-user=vagrant  \
+    --with-fpm-group=nogroup \
+    --enable-wddx \
+    --with-curl \
+    --with-mcrypt \
+    --with-iconv \
+    --with-gd \
+    --with-jpeg-dir=/usr \
+    --with-png-dir=/usr \
+    --with-zlib-dir=/usr \
+    --with-freetype-dir=/usr \
+    --enable-gd-native-ttf \
+    --enable-gd-jis-conv \
+    --with-openssl \
+    --with-pdo-mysql=mysqlnd \
+    --with-gettext=/usr \
+    --with-zlib=/usr \
+    --with-bz2=/usr \
+    --with-recode=/usr \
+    --with-xmlrpc \
+    --with-mysqli=mysqlnd

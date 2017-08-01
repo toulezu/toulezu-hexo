@@ -1,0 +1,42 @@
+
+
+
+- phabricator 目录结构
+
+```
+--bin
+--conf
+--externals
+--resources
+--scripts
+--src
+----__tests__ // 单元测试相关
+----aphront
+----applications // 自带的应用程序目录
+----docs
+----extensions
+----infrastructure // 项目公共组件
+----view
+--support
+--webroot
+----rsrc
+--------audio
+--------css
+----------------aphront
+----------------application
+----------------core
+----------------diviner
+----------------font
+----------------layout
+----------------phui
+----------------syntax
+--------externals
+--------favicons
+--------image
+--------js
+----------------application
+----------------core
+----------------phui
+----------------phuix
+```
+	

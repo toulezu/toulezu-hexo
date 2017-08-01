@@ -1,0 +1,39 @@
+
+
+
+ManiphestTaskResultListView->render
+	-> ManiphestTaskListView->render
+
+其中 $handles 对象获取方式如下
+
+```
+  $handles = ManiphestTaskListView::loadTaskHandles($viewer, $tasks);
+
+....
+
+  public static function loadTaskHandles(
+    PhabricatorUser $viewer,
+    array $tasks) {
+    assert_instances_of($tasks, 'ManiphestTask');
+
+    $phids = array();
+    foreach ($tasks as $task) {
+      $assigned_phid = $task->getOwnerPHID();
+      if ($assigned_phid) {
+        $phids[] = $assigned_phid;
+      }
+      foreach ($task->getProjectPHIDs() as $project_phid) {
+        $phids[] = $project_phid;
+      }
+    }
+
+    if (!$phids) {
+      return array();
+    }
+
+    return id(new PhabricatorHandleQuery())
+      ->setViewer($viewer)
+      ->withPHIDs($phids)
+      ->execute();
+  }
+```	
