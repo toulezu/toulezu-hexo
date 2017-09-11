@@ -1,0 +1,106 @@
+
+# Phabricator form 渲染的过程
+
+
+PhabricatorTextEditField
+	extends PhabricatorEditField
+
+AphrontFormTextControl 
+	extends AphrontFormControl
+	
+PhabricatorTextEditField 包含一个 AphrontFormTextControl
+------------------------------------------------------------------
+AphrontFormControl 的 render 方法最终渲染 HTML 代码
+
+
+------------------------------------------------------------------
+std:maniphest:mycompany:appid_list  
+
+------------------------------------------------------------------
+
+PhabricatorCustomFieldEditField
+  extends PhabricatorEditField
+
+PhabricatorStandardCustomFieldText
+  extends PhabricatorStandardCustomField
+  
+PhabricatorCustomFieldEditField 包含一个 PhabricatorStandardCustomFieldText 对象
+------------------------------------------------------------------
+
+无论是内置的还是自定义字段最终都会通过 appendToForm 方法追加到form上，最终完成 form 的渲染。
+
+PhabricatorEditEngine 中的 buildEditForm 方法中会调用 PhabricatorEditField 中的 appendToForm 方法渲染 form, 在这个地方配置每个字段为必填, 右边显示 `Required` 字样。
+
+```php
+  // 对于不同的form，自定义字段可以必填也可以非必填
+  // appid list 字段，对于主任务是必填的，test task, dev task, bug 来说不是必填的
+  if ($this->getObject() instanceof ManiphestTask) { // 所有的自定义字段
+	if ($this instanceof PhabricatorCustomFieldEditField) {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorTextEditField && // Title
+	  $this->getLabel() === 'Title') {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorUsersEditField && // Assigned To
+	  $this->getLabel() === 'Assigned To') {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorSelectEditField && // Status
+	  $this->getLabel() === 'Status') {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorRemarkupEditField && // Description
+	  $this->getLabel() === 'Description') {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorProjectsEditField && // Tags
+	  $this->getLabel() === 'Tags') {
+	  $control->setError(true);
+	}
+	if ($this instanceof PhabricatorSubscribersEditField && // Subscribers
+	  $this->getLabel() === 'Subscribers') {
+	  $control->setError(true);
+	}
+  }
+```
+
+当 form 提交的时候，调用关系如下
+
+```
+PhabricatorEditEngine -> buildEditResponse 方法
+buildEditResponse -> PhabricatorApplicationTransactionEditor 中的 applyTransactions 方法
+applyTransactions -> validateTransaction 方法
+```
+
+PhabricatorApplicationTransactionEditor 中的 validateTransaction 方法会验证提交的 form
+
+
+对于自定义字段
+PhabricatorStandardCustomField 中的 validateApplicationTransactions 具体验证某个字段是否为空，并设置提示信息
+
+
+对于内置的字段,比如 Title 和 Assigned To,分别使用了 
+ManiphestTaskTitleTransaction 和 ManiphestTaskOwnerTransaction 中的 validateTransactions 方法进行验证.
+
+对于所有的字段可以在 PhabricatorApplicationTransactionEditor 中的 applyTransactions 方法中增加如下代码验证是否必填, 输入的新值是否符合要求
+
+```
+// 这里根据 ManiphestTransaction 对象中的 newvalue 来判断是否输入了值
+$define_error_array = array();
+foreach ($xactions as $xaction) {
+  if ($xaction->getTransactionType() === 'core:subscribers') { // Subscribers 验证不能为空
+	if (empty($xaction->getNewValue())) {
+	  $validateError = new PhabricatorApplicationTransactionValidationError('core:subscribers', 'Required','Subscribers is Required.',null);
+	  $validateError->setIsMissingFieldError(true);
+	  $define_error_array[] = $validateError;
+	}
+  }
+  if ($xaction->getTransactionType() === 'core:edge') { // Tags 不能为空
+	$validateError = new PhabricatorApplicationTransactionValidationError('core:edge', 'Required','Tags is Required.',null);
+	$validateError->setIsMissingFieldError(true);
+	$define_error_array[] = $validateError;
+  }
+}
+```
+

@@ -11,6 +11,8 @@
 - 学习如何通过注解处理器来生成源代码
 - 学习如何通过使用 Apache Velocity 模板引擎和注解处理器来生成源代码
 
+Java 注解在 Java 5 出现, 通过使用注解可以在源代码中加入元数据(描述数据的数据，对数据及信息资源的描述性信息) - 构建或者部署信息,配置属性,编译行为或者代码质量检查.
+
 
 
 - [Code Generation using Annotation ](https://deors.wordpress.com/2011/09/26/annotation-types/)
