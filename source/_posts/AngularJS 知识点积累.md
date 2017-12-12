@@ -475,8 +475,6 @@ angular.module('modaltest')
 
 ## [Controller 之间如何跳转](https://yehuang.me/angularjs/2015/11/01/how-to-pass-parameters-in-angularjs/)
 
-#### 基于ui-router的页面跳转传参
-
 - 在AngularJS的app.js中用ui-router定义路由，比如现在有两个页面，一个页面producers.html放置了多个producers，点击其中一个目标，页面跳转到对应的producer.html页，同时将producerId这个参数传过去。
 
 ```
@@ -515,7 +513,7 @@ angular.module('modaltest')
 
 ## [如何截取字符串(filter的使用介绍)](https://stackoverflow.com/questions/18095727/limit-the-length-of-a-string-with-angularjs)
 
-#### 在模块中定义 cut filter
+在模块中定义 cut filter
 
 ```
 angular.module('ng').filter('cut', function () {
@@ -549,7 +547,7 @@ angular.module('ng').filter('cut', function () {
 {{some_text | cut:true:100:' ...'}}
 ```
 
-#### 参数说明
+参数说明
 
 - wordwise (boolean) - if true, cut only by words bounds,
 - max (integer) - max length of the text, cut to this number of chars,
