@@ -92,25 +92,14 @@ index_with_subtitle: false
 # Value before `||` delimeter is the target link.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
-#<<<<<<< HEAD
-#  home: /
-#  categories: /categories/
-#  #about: /about/
-#  archives: /archives/
-#  tags: /tags/
-#  sitemap: /sitemap.xml
-#  #commonweal: /404.html
-#
-#=======
   home: / || home
-  about: /about/ || user
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  schedule: /schedule/ || calendar
   sitemap: /sitemap.xml || sitemap
-  commonweal: /404/ || heartbeat
-#>>>>>>> origin/master
+  about: /about/ || user
+  #schedule: /schedule/ || calendar
+  #commonweal: /404/ || heartbeat
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -253,8 +242,8 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-#reward_comment: Donate comment here
-#wechatpay: /images/wechatpay.jpg
+reward_comment: Buy me a cup of coffee
+wechatpay: /images/wechatpay.jpg
 #alipay: /images/alipay.jpg
 #bitcoin: /images/bitcoin.png
 
