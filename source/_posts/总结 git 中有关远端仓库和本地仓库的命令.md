@@ -31,12 +31,12 @@ git remote -v
 git remote add toulezu_pha git@github.com:toulezu/phabricator.git
 ```
 
-其中 `origin` 是远端的名称, 可以自己起一个, `git@github.com:toulezu/phabricator.git` 远端仓库地址
+其中 `toulezu_pha` 是远端的名称, 可以自己起一个, `git@github.com:toulezu/phabricator.git` 远端仓库地址
 
 - 删除一个 远端仓库
 
 ```
-git remote rm origin
+git remote rm toulezu_pha
 ```
 
 - 修改 远端仓库 的名称
@@ -64,6 +64,8 @@ git fetch toulezu_pha
 ```
 git checkout -b toulezu_pha_master toulezu_pha/master
 ```
+
+其中 `toulezu_pha_master` 是本地分支的名称
 
 ## 本地仓库相关
 
