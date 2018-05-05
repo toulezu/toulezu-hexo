@@ -2,7 +2,7 @@
 title: 对 byte & 0xFF 的理解
 title_url: java-byte-0XFF
 date: 2018-05-03
-tags: Java
+tags: [Java,byte,OXFF,原码,反码,补码,移位运算,位运算]
 categories: [Java]
 description: 这篇博客涉及到对 Java 基本类型的转换, 对原码, 反码, 补码的理解, 对 移位运算, 位运算 的应用.
 ---
