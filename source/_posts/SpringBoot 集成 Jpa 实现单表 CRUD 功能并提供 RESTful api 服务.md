@@ -4,7 +4,7 @@ title_url: SpringBoot-jpa-RESTful-practice
 date: 2019-05-27
 tags: [SpringBoot,jpa,RESTful]
 categories: 技术
-description: SpringBoot 集成 Jpa 实现单表 CRUD 功能并提供 RESTful api 服务
+description: 这里介绍在 SpringBoot 集成 Jpa 并提供 RESTful api 服务，实现单表的 CRUD 功能；使用 Swagger 自动生成 RESTful api 文档；通过泛型封装 Service 和 Controller 抽象基类。
 ---
 
 ## 1 概述
