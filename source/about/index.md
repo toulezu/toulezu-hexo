@@ -13,6 +13,4 @@ comments: false
 
 GitHub: https://github.com/toulezu
 
-目前工作在: [携程](http://www.ctrip.com/)
-
 联系: svsechen#163.com

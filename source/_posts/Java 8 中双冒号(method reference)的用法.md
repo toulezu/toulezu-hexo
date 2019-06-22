@@ -2,8 +2,8 @@
 title: Java 8 中双冒号(method reference)的用法
 title_url: understand-Java-8-method-reference
 date: 2019-05-14
-tags: [Java]
-categories: 技术
+tags: [Java,Java8]
+categories: Java
 description: Java 8 中双冒号(method reference)的用法
 ---
 

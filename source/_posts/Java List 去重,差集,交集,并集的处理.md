@@ -3,7 +3,7 @@ title: Java List 去重,差集,交集,并集的处理
 title_url: Java-list-retainAll-addAll-removeAll
 date: 2019-04-25
 tags: [Java,集合,List]
-categories: 技术
+categories: [Java,集合]
 description: Java List 去重,差集,交集,并集的处理
 ---
 

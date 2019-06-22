@@ -3,7 +3,7 @@ title: 深入理解 Java 中的 CLASSPATH 类路径概念
 title_url: understand-java-classpath
 date: 2019-03-02
 tags: Java
-categories: 技术
+categories: Java
 description: 深入理解 Java 中的 CLASSPATH 类路径概念
 ---
 

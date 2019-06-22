@@ -3,7 +3,7 @@ title: 关于Java多线程在提升程序性能上的一些实践
 title_url: Java-Thread-Runnable-Executor-Practice
 date: 2016-08-30
 tags: [Java,Thread,Runnable,Executor]
-categories: 多线程
+categories: [Java,并发]
 description: 关于Java多线程在提升程序性能上的一些实践
 ---
 

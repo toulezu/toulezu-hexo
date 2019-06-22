@@ -2,8 +2,8 @@
 title: Java 8 Lambda 表达式介绍
 title_url: understand-Java-8-Lambda
 date: 2019-05-17
-tags: [Java,Lambda]
-categories: 技术
+tags: [Java,Java8,Lambda]
+categories: Java
 description: Java 8 Lambda 表达式介绍
 ---
 

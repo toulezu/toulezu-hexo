@@ -3,7 +3,7 @@ title: 将 Java 系统日志由 JUL，Log4j, Log4j2, JCL 转向 SLF4J + Logback
 title_url: Java-SLF4J-Logback
 date: 2019-02-24
 tags: [Java,日志,SLF4J,Logback]
-categories: 技术
+categories: [Java,日志]
 description: Logback 性能比较好，在编译的时候绑定 slf4j 接口的实现。这里探讨将系统的日志实现由 JUL，Log4j, Log4j2, JCL 转向 slf4j + Logback 的方法。
 ---
 

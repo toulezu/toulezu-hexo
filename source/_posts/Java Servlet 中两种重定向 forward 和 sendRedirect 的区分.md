@@ -3,7 +3,7 @@ title: Java Servlet 中两种重定向 forward 和 sendRedirect 的区分
 title_url: Java-Servlet-sendRedirect-forward
 date: 2019-04-25
 tags: [Java,Servlet]
-categories: 技术
+categories: Java
 description: Java Servlet 中两种重定向 forward 和 sendRedirect 的区分
 ---
 

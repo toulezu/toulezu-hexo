@@ -3,7 +3,7 @@ title: Java 分段从文件中读取数据的一个例子
 title_url: java-read-file-piece
 date: 2016-10-31
 tags: [Java]
-categories: 技术
+categories: Java
 description: Java 分段从文件中读取数据的一个例子
 ---
 
