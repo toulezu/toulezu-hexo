@@ -116,7 +116,7 @@ uis-open-close
 })();
 ```
 
-#### 3.4 html
+#### 3.4 html 部分
 
 ```html
 <div class="form-group">
@@ -153,7 +153,7 @@ uis-open-close
 - reset-search-input="false" 选择一个选项后清除搜索输入框中的内容
 - 其中 `ng-bind-html` 需要依赖 ngSanitize 模块
 
-#### 5.5 js
+#### 3.5 js 部分
 
 ```javascript
 // 默认选择
