@@ -3,7 +3,7 @@ title: WebJars 的介绍以及在 SpringBoot 中的使用
 title_url: SpringBoot-webjars-usage
 date: 2019-02-22
 tags: [SpringBoot,webjars]
-categories: 技术
+categories: SpringBoot
 description: 本文介绍了 WebJars 的相关功能以及和 SpringBoot 集成的一个例子。
 ---
 
@@ -124,6 +124,10 @@ public class WebConfig implements WebMvcConfigurer {
 ```
 
 由于 SpringBoot 自动将 classpath 下的 `/static`, `/public`, `/resources`, `/META-INF/resources` 这些目录自动映射到 `/**` 请求路径上，因此访问 `http://localhost:8080/` 就可以找到 `public\index.html`。
+
+## 代码
+
+- [spring-boot-webjars](https://gitee.com/toulezucom/spring-boot-learning/tree/master/spring-boot-webjars)
 
 ## 总结
 

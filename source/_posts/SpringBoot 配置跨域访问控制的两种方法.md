@@ -3,7 +3,7 @@ title: SpringBoot 配置跨域访问控制的两种方法
 title_url: SpringBoot-CORS-practice
 date: 2019-03-05
 tags: SpringBoot
-categories: 技术
+categories: SpringBoot
 description: SpringBoot 配置跨域访问控制的两种方法
 ---
 
@@ -174,6 +174,10 @@ public class CorsBase {
 public class UserController extends CorsBase {
 }
 ```
+
+## 代码
+
+- [spring-boot-cors](https://gitee.com/toulezucom/spring-boot-learning/tree/master/spring-boot-cors)
 
 ## 总结
 
