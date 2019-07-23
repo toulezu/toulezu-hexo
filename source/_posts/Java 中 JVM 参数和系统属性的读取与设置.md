@@ -29,7 +29,7 @@ inputArguments.forEach(str -> System.out.println(str));
 -Dfile.encoding=UTF-8
 ```
 
-## 2.2 设置
+#### 2.2 设置
 
 1. 在 IDE 的 VM options 中输入如下内容
 

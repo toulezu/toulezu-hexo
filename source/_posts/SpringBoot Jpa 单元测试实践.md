@@ -3,7 +3,7 @@ title: SpringBoot Jpa 单元测试实践
 title_url: SpringBoot-jpa-junit-test-practice
 date: 2019-05-27
 tags: [SpringBoot,jpa,junit]
-categories: 技术
+categories: SpringBoot
 description: 本文将介绍如何在 SpringBoot 环境中编写独立于 Spring context 的 Jpa 单元测试，比如：单个 service, 单个 controller 的单元测试。
 ---
 
