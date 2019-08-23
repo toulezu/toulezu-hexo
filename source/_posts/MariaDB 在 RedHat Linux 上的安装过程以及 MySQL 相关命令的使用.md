@@ -3,7 +3,7 @@ title: MariaDB 在 RedHat Linux 上的安装过程以及 MySQL 相关命令的�
 title_url: Linux-MariaDB-setup-MySql
 date: 2017-05-15
 tags: [Linux,MariaDB,MySql]
-categories: 技术
+categories: MariaDB
 description: MariaDB 在 RedHat Linux 上的安装过程以及 MySQL 相关命令的使用
 ---
 
