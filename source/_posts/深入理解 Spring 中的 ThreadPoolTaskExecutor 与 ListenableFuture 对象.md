@@ -9,6 +9,8 @@ description: 本文详细分析 Spring 中的 ThreadPoolTaskExecutor 与 Listena
 
 ## 1 概述
 
+*以 jdk1.8 和 Spring Framework 4.3.4.RELEASE 为基准*
+
 1. 本文详细分析 Spring 中的 ThreadPoolTaskExecutor 与 ListenableFutureTask 对象；并且比较 ThreadPoolTaskExecutor 和 ThreadPoolExecutor 之间的区别。
 2. 介绍 ThreadPoolTaskExecutor 的基本使用
 3. 比较 ListenableFuture 与 Future
@@ -203,3 +205,78 @@ protected void done() {
 
 1. ListenableFuture 相比 Future 是不需要知道 执行结果的情况下就可以将 成功或者失败的业务代码 通过回调的方式 预埋，带来的好处就是异步，不需要阻塞当前线程，从而可以提高系统的吞吐量
 2. Future 需要通过 get() 方法阻塞当前线程，在获取线程的执行结果后再根据执行结果编写相关的业务代码
+
+下面通过一个例子来演示下：
+
+1. 通过 1 个线程，循环执行 10000 次，使用 submitListenable 方法，具体如下
+
+```java
+public static void main(String[] args) {
+    ThreadPoolTaskExecutor executorService = new ThreadPoolTaskExecutor();
+    executorService.setCorePoolSize(1);
+    executorService.setMaxPoolSize(1);
+    executorService.initialize();
+
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < 10000; i++) {
+        ListenableFuture<Boolean> asyncResult = executorService.submitListenable(() -> {
+
+            // 休息5毫秒，模拟执行
+            TimeUnit.MILLISECONDS.sleep(5);
+            //throw new RuntimeException("出现异常");
+            return true;
+
+        });
+        asyncResult.addCallback(data -> {
+                    try {
+                        // 休息3毫秒模拟获取到执行结果后的操作
+                        TimeUnit.MILLISECONDS.sleep(3);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }, ex -> logger.info("**异常信息**：{}", ExceptionUtils.getExceptionMsg(ex)));
+    }
+    System.out.println(String.format("总结耗时：%s", System.currentTimeMillis() - start));
+}
+```
+
+通过测试3次，总计耗时在 50 - 60 毫秒之间
+
+2. 通过 1 个线程，循环执行 10000 次，使用 submit 方法和 Future 对象，具体如下
+
+```java
+public static void main(String[] args) {
+    ThreadPoolTaskExecutor executorService = new ThreadPoolTaskExecutor();
+    executorService.setCorePoolSize(1);
+    executorService.setMaxPoolSize(1);
+    executorService.initialize();
+
+    long start = System.currentTimeMillis();
+    for (int i = 0; i < 10000; i++) {
+        Future<Boolean> future = executorService.submit(() -> {
+            try {
+                // 休息5毫秒，模拟执行
+                TimeUnit.MILLISECONDS.sleep(5);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        });
+
+        try {
+            // 以阻塞的方式获取执行结果
+            Boolean result = future.get();
+            // logger.info(String.format("执行结果：%s", result));
+            // 休息3毫秒模拟获取到执行结果后的操作
+            TimeUnit.MILLISECONDS.sleep(3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    System.out.println(String.format("总结耗时：%s", System.currentTimeMillis() - start));
+}
+```
+
+通过测试3次，总计耗时基本在 87000 毫秒以上
