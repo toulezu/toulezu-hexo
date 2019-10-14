@@ -2,7 +2,7 @@
 title: HTML 倒计时自动跳转功能实现以及 setInterval() 方法介绍
 title_url: understand-HTML-countdown-jump-setInterval-practice
 date: 2019-10-11
-tags: [HTML]
+tags: [HTML,JavaScript]
 categories: HTML
 description: HTML 倒计时自动跳转功能实现以及 setInterval() 方法介绍
 ---
