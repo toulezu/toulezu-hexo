@@ -31,7 +31,7 @@ JavaScript 作为脚本语言非常灵活，不需要编译即可执行，通过
  <dependency>
     <groupId>com.ckjava</groupId>
     <artifactId>xutils</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 </dependency>
 ```
 

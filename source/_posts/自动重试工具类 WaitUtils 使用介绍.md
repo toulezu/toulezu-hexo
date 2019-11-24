@@ -19,7 +19,7 @@ description: 在日常开发中经常会遇到通过 http 请求获取接口数�
 <dependency>
     <groupId>com.ckjava</groupId>
     <artifactId>xutils</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 </dependency>
 ```
 
