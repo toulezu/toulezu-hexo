@@ -1,11 +1,11 @@
 @echo off
-set base_path=D:\workspace\git-toulezu
+set base_path=G:\workspace\git-toulezu
 set public_path=%base_path%\public
 set hexo_public=%base_path%\hexo\public
 set theme_path=%base_path%\hexo\themes
 
 @echo [INFO] ------------------------------------------------------------------------Ö´ÐÐ hexo g ÃüÁî
-D:
+G:
 cd %base_path%\hexo
 call hexo clean
 call hexo g
