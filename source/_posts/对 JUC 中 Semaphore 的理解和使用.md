@@ -3,7 +3,7 @@ title: 对 JUC 中 Semaphore 的理解和使用
 title_url: JUC-CyclicBarrier-understand-practice
 date: 2018-09-17
 tags: [并发,Java,JUC,Semaphore]
-categories: [Java,并发]
+categories: [Java,JUC,并发]
 description: 对 JUC 中 Semaphore 的理解和使用
 ---
 
