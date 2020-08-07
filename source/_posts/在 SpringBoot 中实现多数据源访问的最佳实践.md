@@ -492,6 +492,8 @@ public class TOrderService extends BaseMybatisCrudService<TOrderEntity, TOrderDa
 
 ## 5 测试
 
+#### 5.1 单个数据源切换测试
+
 - TestOrderService 测试如下
 
 ```java
@@ -576,6 +578,97 @@ public class TestUserService {
 ```
 
 从输出结果看，在数据源加载前，先修改了 datasource key 为 user 数据库。
+
+#### 5.2 一个方法中调用了两个 Datasoure 的情况
+
+通过 `@Transactional(propagation = Propagation.REQUIRES_NEW)` 来实现
+
+TUserService 的 get 方法修改如下
+
+```java
+@Override
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+@MultiDataSource(DbEnum.user)
+public Optional<TUserEntity> get(long id) {
+    return super.get(id);
+}
+```
+
+TOrderService 的 get 方法修改如下
+
+```
+@Override
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+@MultiDataSource(DbEnum.order)
+public Optional<TOrderEntity> get(long id) {
+    return super.get(id);
+}
+```
+
+TUserOrderService 的 getUserOrder 方法如下
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class TUserOrderService {
+
+    @Autowired
+    private TOrderService tOrderService;
+    @Autowired
+    private TUserService tUserService;
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void getUserOrder(Long id) {
+        tOrderService.get(id);
+        tUserService.get(id);
+    }
+
+}
+```
+
+- 测试如下
+
+```java
+import com.ckjava.service.TUserOrderService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class TestUserOrderService {
+
+	@Autowired
+	private TUserOrderService tUserOrderService;
+
+	@Test
+	public void test_getUserOrder() {
+		tUserOrderService.getUserOrder(1L);
+	}
+
+}
+```
+
+- 输出如下
+
+```
+20:46:02.267 [main] INFO  c.c.config.MultiDataSourceHolder - Thread main set datasource order
+20:46:02.269 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+20:46:02.496 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+20:46:02.601 [main] INFO  c.c.config.MultiDataSourceHolder - Thread main unset datasource order
+20:46:03.076 [main] INFO  c.c.config.MultiDataSourceHolder - Thread main set datasource user
+20:46:03.076 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+20:46:03.081 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+20:46:04.254 [main] INFO  c.c.config.MultiDataSourceHolder - Thread main unset datasource user
+```
+
+- 从输出可见，在 getUserOrder 的方法执行过程中发生了两次数据源切换。
 
 ## 6 代码
 
