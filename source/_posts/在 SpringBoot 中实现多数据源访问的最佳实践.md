@@ -596,7 +596,7 @@ public Optional<TUserEntity> get(long id) {
 
 TOrderService 的 get 方法修改如下
 
-```
+```java
 @Override
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 @MultiDataSource(DbEnum.order)
