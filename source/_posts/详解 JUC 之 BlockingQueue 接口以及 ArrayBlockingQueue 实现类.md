@@ -3,10 +3,9 @@ title: 详解 JUC 之 BlockingQueue 接口以及 ArrayBlockingQueue 实现类
 title_url: JUC-BlockingQueue-understand-practice
 date: 2020-08-10
 tags: [JUC,BlockingQueue,ArrayBlockingQueue]
-categories: [JUC,BlockingQueue]
+categories: [JUC,BlockingQueue,ArrayBlockingQueue]
 description: 详解 JUC 之 BlockingQueue 接口以及 ArrayBlockingQueue 实现类
 ---
-
 
 ## 1 概述
 
